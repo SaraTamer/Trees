@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Student.h"
 #include<iostream>
+#include<map>
 using namespace std;
 class AVL {
 public:
@@ -25,6 +26,7 @@ public:
 	void printInOrder();
 	bool validData(string& n, string& dep, int& id, double& gpa);
 	int start();
+	map<string, int> depMap;
 
 };
 
