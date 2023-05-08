@@ -7,8 +7,20 @@
 #include "Student.h"
 
 using namespace std;
+template<class T>
+struct Node {
+    T value;
+    Node* left, * right;
+
+    Node(T val) {
+        value = val;
+        left = right = nullptr;
+    }
+};
+
+template<class T>
 class MaxHeap{
 private:
-    node* root;
+    Node<T>* root;
 };
 #endif //TREES_MAXHEAP_H

@@ -30,7 +30,7 @@ void printReq(Node<T>* cur) {
 	if (cur == nullptr) {
 		return;
 	}
-	Node* r = cur;
+	Node<T>* r = cur;
 
 	printReq(cur->left);
 	cout << cur->value << "\n";

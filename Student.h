@@ -20,6 +20,7 @@ public:
 		name = n; department = dep;
 		ID = id; GPA = gpa;
 	}
+    int getID(){return ID;}
 	bool operator==(student other) {
 		return (ID == other.ID);
 	}

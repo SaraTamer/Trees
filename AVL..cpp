@@ -1,12 +1,15 @@
-
-AVL::AVL()
+#include "AVL.h"
+#include <regex>
+template<class T>
+AVL<T>::AVL()
 {
 	root = NULL;
 }
 
-node* AVL::createnode(student s)
+template<class T>
+node<T>* AVL<T>::createnode(student s)
 {
-	node* newnode = new node;
+	node<T>* newnode = new node<T>;
 	newnode->value = s;
 	newnode->left = NULL;
 	newnode->right = NULL;
@@ -15,9 +18,10 @@ node* AVL::createnode(student s)
 	
 }
 
-node* AVL::rotateleft(node* root)
+template<class T>
+node<T>* AVL<T>::rotateleft(node<T>* root)
 {
-	node* temp = root->right;
+	node<T>* temp = root->right;
 	root->right = temp->left;
 	temp->left = root;
 	root->height = max(height(root->left), height(root->right)) + 1;
@@ -25,9 +29,10 @@ node* AVL::rotateleft(node* root)
 	return temp;
 }
 
-node* AVL::rotateright(node* root)
+template<class T>
+node<T>* AVL<T>::rotateright(node<T>* root)
 {
-	node* temp = root->left;
+	node<T>* temp = root->left;
 	root->left = temp->right;
 	temp->right = root;
 	root->height = max(height(root->left), height(root->right)) + 1;
@@ -35,14 +40,16 @@ node* AVL::rotateright(node* root)
 	return temp;
 }
 
-int AVL::height(node* root)
+template<class T>
+int AVL<T>::height(node<T>* root)
 {
 	if (root == NULL)
 		return 0;
 	return root->height;
 }
 
-node* AVL::add_student(node* root, student s)
+template<class T>
+node<T>* AVL<T>::add_student(node<T>* root, student s)
 {	
 	if (root == NULL) {
 		root = createnode(s);
@@ -51,14 +58,14 @@ node* AVL::add_student(node* root, student s)
 		return root;
 	}
 	//check if already exist return 
-	else if (root->value.id == s.id) {
+	else if (root->value.ID == s.getID()) {
 		cout << "The student is already exist.\n";
 			return root;
 	}
-	else if (s.id < root->value.id) {
+	else if (s.getID() < root->value.ID) {
 		root->left = add_student(root->left, s);
 		if (height(root->left) - height(root->right) == 2) {
-			if (s.id < root->left->value.id) {
+			if (s.getID() < root->left->value.ID) {
 				root = rotateright(root);
 			}
 			else {
@@ -68,10 +75,10 @@ node* AVL::add_student(node* root, student s)
 		}
 		
 	}
-	else if (s.id > root->value.id) {
+	else if (s.getID() > root->value.ID) {
 		root->right = add_student(root->right, s);
 		if (height(root->right) - height(root->left) == 2) {
-			if (s.id > root->right->value.id) {
+			if (s.getID() > root->right->value.ID) {
 				root = rotateleft(root);
 			}
 			else {
@@ -83,20 +90,21 @@ node* AVL::add_student(node* root, student s)
 	root->height = max(height(root->left), height(root->right)) + 1;
 	return root;
 }
-bool AVL::search_student(node* root, int id)
+template<class T>
+bool AVL<T>::search_student(node<T>* root, int id)
 {
 	if (root == NULL) {
 		cout << "This student is not exist" << endl;
 		return false;
 	}
-	if (id < root->value.id) {
+	if (id < root->value.ID) {
 		search_student(root->left, id);
 	}
-	else if (id > root->value.id) {
+	else if (id > root->value.ID) {
 		search_student(root->right, id);
 	}
 	else {
-		cout << "Student ID: " << root->value.id << endl;
+		cout << "Student ID: " << root->value.ID << endl;
 		cout << "Student Name: " << root->value.name << endl;
 		cout << "Student GPA: " << root->value.gpa << endl;
 		cout << "Student Department: " << root->value.dept << endl;
@@ -104,7 +112,8 @@ bool AVL::search_student(node* root, int id)
 		return true;
 	}
 }
-bool AVL:: validData(string& n, string& dep, int& id, double& gpa) {
+template<class T>
+bool AVL<T>:: validData(string& n, string& dep, int& id, double& gpa) {
 
 	regex validN("[a-zA-Z]+ [a-zA-Z]+"), validD("[A-Z][A-Z]");
 	//check also that id and GPA is integer not string using regex
@@ -124,7 +133,8 @@ bool AVL:: validData(string& n, string& dep, int& id, double& gpa) {
 	
 	return true;
 }
-void AVL::insert() {
+template<class T>
+void AVL<T>::insert() {
 	string n, dep;
 	double gpa; int id;
 	bool valid = 0;
@@ -144,11 +154,8 @@ void AVL::insert() {
 		valid = validData(n, dep, id, gpa);	
 	}
 	//add this student to the tree
-	student s;
-	s.name = n;
-	s.id = id;
-	s.gpa = gpa;
-	s.dept = dep;
+	student s(n,dep, id,gpa);
+
 	root = add_student(root, s);
 	//add dep to map if found increase count if not add it
 	if (depMap.find(dep) != depMap.end()) {
@@ -158,19 +165,21 @@ void AVL::insert() {
 		depMap[dep] = 1;
 	}
 }
-void AVL::search(int id)
+template<class T>
+void AVL<T>::search(int id)
 {
 	
 	search_student(root, id);
 	
 }
-void AVL::printReq(node* cur)
+template<class T>
+void AVL<T>::printReq(node<T>* cur)
 {
 	if (cur == NULL)
 		return;
 	
 	printReq(cur->left);
-	cout << "Student ID: " << cur->value.id << endl;
+	cout << "Student ID: " << cur->value.ID << endl;
 	cout << "Student Name: " << cur->value.name << endl;
 	cout << "Student GPA: " << cur->value.gpa << endl;
 	cout << "Student Department: " << cur->value.dept << endl;
@@ -179,7 +188,8 @@ void AVL::printReq(node* cur)
 	
 }
 
-void AVL::printInOrder()
+template<class T>
+void AVL<T>::printInOrder()
 {
 	auto it = depMap.begin();
 	for (; it != depMap.end(); it++) {
