@@ -176,6 +176,120 @@ void AVL<T>::search(int id)
 	
 }
 template<class T>
+node<T>* AVL<T>::delete_student(node<T>* root, student s)
+{
+	if (root == NULL) {
+		cout << " The student is not exist " << endl;
+		return root;
+	}
+	else if (s.getID() < root->value.getID()) {
+		root->left = delete_student(root->left, s);
+	}
+	else if (s.getID() > root->value.getID()) {
+		root->right = delete_student(root->right, s);
+	}
+	else {
+		if (root->left == NULL && root->right == NULL) {
+			delete root;
+			root = NULL;
+		}
+		else if (root->left == NULL) {
+			node<T>* temp = root;
+			root = root->right;
+			delete temp;
+		}
+		else if (root->right == NULL) {
+			node<T>* temp = root;
+			root = root->left;
+			delete temp;
+		}
+		else {
+			node<T>* temp = findmin(root->right);
+			root->value = temp->value;
+			root->right = delete_student(root->right, temp->value);
+		}
+	}
+	if (root == NULL)
+	{
+		cout << " The student is deleted " << endl;
+		return root;
+	}
+	root->height = max(height(root->left), height(root->right)) + 1;
+	root = balanceBST(root);
+	return root;
+	
+}
+template<class T>
+void AVL<T>::delete_std(int id)
+{
+	student s;
+	s.ID = id;
+
+	root = delete_student(root, s);
+}
+template<class T>
+node<T>* AVL<T>::findmin(node<T>* root)
+{
+	if (root == NULL)
+		return NULL;
+	else if (root->left == NULL)
+		return root;
+	else
+		return findmin(root->left);
+}
+template<class T>
+int AVL<T>::start()
+{
+	int option;
+	cout << "Choose one of the following options:\n1. Add student\n2. Remove student\n3. Search student\n"
+		<< "4. Print All(sorted by id)\n5. Return to main menu\n";
+	cin >> option;
+	while (option < 1 || option>5) {
+		cout << "Invalid choice.\n Please choose one of the following options:\n1. Add student\n2. Remove student\n3. Search student\n"
+			<< "4. Print All(sorted by id)\n5. Return to main menu\n" << "Enter number of option:";
+		cin >> option;
+	}
+	switch (option)
+	{
+	case 1: {
+		cout << "your choice 1\n";
+		insert();
+		break;
+	}
+	case 2: {
+		cout << "your choice 2\n";
+		int id;
+		cout << "Enter the id of the student you want to delete: ";
+		cin >> id;
+		delete_std(id);
+
+		break;
+	}
+	case 3: {
+		cout << "your choice 3\n";
+		int id;
+		cout << "Enter the id of the student you want to search for: ";
+		cin >> id;
+		search(id);
+		break;
+	}
+	case 4: {
+		cout << "your choice 4\n";
+		printInOrder();
+
+		break;
+	}
+	case 5: {
+		cout << "your choice 5\n";
+		break;
+	}
+
+	default:
+		break;
+	}
+	return option;
+}
+template<class T>
 void AVL<T>::printReq(node<T>* cur)
 {
 	if (cur == NULL)
