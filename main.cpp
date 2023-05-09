@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
     BSTStudent bst;
-    AVL<student> avl;
+    AVL avl;
     MinHeap<student> minHeap;
     MaxHeap<student> maxHeap;
 
@@ -29,7 +29,7 @@ int main()
             }
             else if(choice == 2)
             {
-//                avl.insert();
+//                cont = avl.start();
                 break;
             }
             else if(choice == 3)
