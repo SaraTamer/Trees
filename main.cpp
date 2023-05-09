@@ -1,6 +1,11 @@
 #include"BST.h"
+#include "HeapStudent.h"
+#include "MaxHeap.h"
 
-int main() {
+using namespace std;
+
+int main()
+{
     BSTStudent bst;
 
     int choice;
@@ -13,10 +18,26 @@ int main() {
         {
             if (choice == 1) {
                 cont = bst.start();
+                break;
             }
+            else if(choice == 2)
+            {
 
+            }
+            else if(choice == 3)
+            {
+                MinHeap<HeapStudent> minHeap;
+                minHeap.studentMenu();
+            }
+            else if(choice == 4)
+            {
+                MaxHeap<HeapStudent> maxHeap;
+                maxHeap.studentMenu();
+            }
         } while (cont);
     } while (choice);
 
     return 0;
 }
+
+

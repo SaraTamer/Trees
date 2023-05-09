@@ -1,6 +1,3 @@
-//
-// Created by Apex on 5/5/2023.
-//
 
 #ifndef TREES_STUDENT_H
 #define TREES_STUDENT_H
@@ -9,6 +6,7 @@
 
 using namespace std;
 class student {
+protected:
 	string name, department;
 	double GPA;
 	int ID;
@@ -21,6 +19,7 @@ public:
 		ID = id; GPA = gpa;
 	}
     int getID(){return ID;}
+    double getGPA(){return GPA;}
 	bool operator==(student other) {
 		return (ID == other.ID);
 	}
