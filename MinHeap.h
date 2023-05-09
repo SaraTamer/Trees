@@ -37,9 +37,9 @@ void MinHeap<T>::heapify(vector<T> vec, int size, int parent)
     int l = left(parent);
     int r = right(parent);
     int minimum = parent;
-    if(vec[minimum] > vec[l])
+    if(l < size && vec[minimum] > vec[l])
         minimum = l;
-    if(vec[minimum] > vec[r])
+    if(r < size && vec[minimum] > vec[r])
         minimum = r;
     if(minimum != parent)
     {

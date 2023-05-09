@@ -30,9 +30,9 @@ void MaxHeap<T>::heapify(vector<T> vec, int size, int parent)
     int l = left(parent);
     int r = right(parent);
     int maximum = parent;
-    if(vec[maximum] < vec[l])
+    if(l < size && vec[maximum] < vec[l])
         maximum = l;
-    if(vec[maximum] < vec[r])
+    if(r < size && vec[maximum] < vec[r])
         maximum = r;
     if(maximum != parent)
     {
