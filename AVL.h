@@ -36,6 +36,7 @@ public:
 	void printReq(node<T>* cur);
 	void printInOrder();
 	bool validData(string& n, string& dep, int& id, double& gpa);
+	node* balanceBST(node* root);
 	int start();
 	map<string, int> depMap;
 
