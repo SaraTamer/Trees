@@ -36,7 +36,7 @@ public:
 	string getDepartment() { return department; }
 	double getGPA() { return GPA; }
 	void setID(int id) { ID = id; }
-	double getGPA() { return GPA; }
+	
 	bool operator==(student other) {
 		return (ID == other.ID);
 	}
