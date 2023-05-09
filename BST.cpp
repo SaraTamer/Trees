@@ -3,7 +3,7 @@
 int BST::start() {
 	int option;
 	cout << "Choose one of the following options:\n1. Add student\n2. Remove student\n3. Search student\n"
-		<< "4. Print All(sorted by id)\n5. Return to main menu\n";
+		<< "4. Print All(sorted by id)\n5. Return to main menu\nEnter number of option:";
 	cin >> option;
 	while (option < 1 || option>5) {
 		cout << "Invalid choice.\n Please choose one of the following options:\n1. Add student\n2. Remove student\n3. Search student\n"
