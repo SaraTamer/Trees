@@ -47,48 +47,51 @@ int AVL<T>::height(node<T>* root)
 		return 0;
 	return root->height;
 }
-
+template<class T>
+node<T>* AVL<T>::balanceBST(node<T>* root)
+{
+ if(root==NULL) return root;
+        root->left= balanceBST(root->left);
+        root->right= balanceBST(root->right);
+        int l = height(root->left), r = height(root->right);
+        int bf = l -r ;
+        if(bf > 1){
+            if (height(root->left->left)<height(root->left->right)){
+                root->left=rotateleft(root->left);
+            }
+            return  balanceBST(rotateright(root));
+        }else if (bf<-1){
+            if (height(root->right->right)<height(root->right->left)){
+                root->right=rotateright(root->right);
+            }
+            return  balanceBST(rotateleft(root));
+        }
+        return root;
+}
 template<class T>
 node<T>* AVL<T>::add_student(node<T>* root, student s)
 {	
 	if (root == NULL) {
-		root = createnode(s);
-		root->height = 1;
-		cout << "The student is added.\n";
-		return root;
-	}
-	//check if already exist return 
-	else if (root->value.ID == s.getID()) {
-		cout << "The student is already exist.\n";
-			return root;
-	}
-	else if (s.getID() < root->value.ID) {
-		root->left = add_student(root->left, s);
-		if (height(root->left) - height(root->right) == 2) {
-			if (s.getID() < root->left->value.ID) {
-				root = rotateright(root);
-			}
-			else {
-				root->left = rotateleft(root->left);
-				root = rotateright(root);
-			}
-		}
-		
-	}
-	else if (s.getID() > root->value.ID) {
-		root->right = add_student(root->right, s);
-		if (height(root->right) - height(root->left) == 2) {
-			if (s.getID() > root->right->value.ID) {
-				root = rotateleft(root);
-			}
-			else {
-				root->right = rotateright(root->right);
-				root = rotateleft(root);
-			}
-		}
-	}
-	root->height = max(height(root->left), height(root->right)) + 1;
-	return root;
+        root = createnode(s);
+        root->height = 1;
+        cout << "The student is added.\n";
+        return root;
+    }
+    //check if already exist return 
+    else if (root->value.ID == s.getID()) {
+        cout << "The student is already exist.\n";
+        return root;
+    }
+    else if (s.getID() < root->value.ID) {
+        root->left = add_student(root->left, s);
+        root = balanceBST(root); // balance the tree after adding a new node
+    }
+    else if (s.getID() > root->value.ID) {
+        root->right = add_student(root->right, s);
+        root = balanceBST(root); // balance the tree after adding a new node
+    }
+    root->height = max(height(root->left), height(root->right)) + 1;
+    return root;
 }
 template<class T>
 bool AVL<T>::search_student(node<T>* root, int id)
