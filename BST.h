@@ -4,33 +4,21 @@
 #define TREES_BST_H
 
 #include <iostream>
-#include <string>
 #include <regex>
 #include "Student.h"
 
-
 using namespace std;
 
-
-template<class T>
 class BST {
-	Node<T>* root = nullptr;
-public:
-	void insert(T val);
-	void printInOrder();
-};
-
-class BSTStudent {
-	BST<student> students;
+	Node* root = nullptr;
 public:
 	int start();
 	void AddStudent();
+	void insert(student val);
 	//void RemoveStudent();
-	//void SearchStudent();
+	void SearchStudent(int id);
 	void PrintAll();//sorted by ID
 };
-
-
 
 
 
