@@ -22,7 +22,8 @@ int main()
             }
             else if(choice == 2)
             {
-
+         cont = bst.start();
+                break;
             }
             else if(choice == 3)
             {
