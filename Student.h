@@ -6,30 +6,34 @@
 
 using namespace std;
 template<class T>
-struct Node {
-    T value;
-    Node* left, * right;
 
-    Node(T val) {
-        value = val;
-        left = right = nullptr;
-    }
+struct Node {
+	student value;
+	int height;
+	Node* left, * right;
+
+	Node(student val) {
+		value = val;
+		left = right = nullptr;
+	}
 };
 class student {
 protected:
 	string name, department;
 	double GPA;
+	int ID;
 public:
-    int ID;
-    student() {
+	
+	student() {
 		name = department = "";
 	}
 	student(string n, string dep, int id, double gpa) {
 		name = n; department = dep;
 		ID = id; GPA = gpa;
 	}
-    int getID(){return ID;}
-    double getGPA(){return GPA;}
+	int getID() { return ID; }
+	void setID(int id) { ID = id; }
+	double getGPA() { return GPA; }
 	bool operator==(student other) {
 		return (ID == other.ID);
 	}
