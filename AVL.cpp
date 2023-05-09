@@ -1,6 +1,5 @@
 #include "AVL.h"
 #include <regex>
-template<class T>
 
 AVL::AVL()
 {
@@ -11,9 +10,6 @@ AVL::AVL()
 Node* AVL::createNode(student s)
 {
 	Node* newNode = new Node(s);
-	newNode->value = s;
-	newNode->left = nullptr;
-	newNode->right = nullptr;
 	newNode->height = 1;
 	return newNode;
 
@@ -105,11 +101,7 @@ bool AVL::search_student(Node* root, int id)
 		search_student(root->right, id);
 	}
 	else {
-		cout << "Student ID: " << root->value.getID() << endl;
-		cout << "Student Name: " << root->value.getName() << endl;
-		cout << "Student GPA: " << root->value.getGPA() << endl;
-		cout << "Student Department: " << root->value.getDepartment() << endl;
-		cout << "================================================= " << endl;
+		cout << root->value << endl;
 		return true;
 	}
 }
@@ -171,7 +163,7 @@ void AVL::search(int id)
 {
 
 	search_student(root, id);
-	
+
 }
 Node* AVL::delete_student(Node* root, student s)
 {
@@ -293,11 +285,7 @@ void AVL::printReq(Node* cur)
 		return;
 
 	printReq(cur->left);
-	cout << "Student ID: " << cur->value.getID() << endl;
-	cout << "Student Name: " << cur->value.getName() << endl;
-	cout << "Student GPA: " << cur->value.getGPA() << endl;
-	cout << "Student Department: " << cur->value.getDepartment() << endl;
-	cout << "================================================= " << endl;
+	cout << cur->value<< endl;
 	printReq(cur->right);
 
 }
