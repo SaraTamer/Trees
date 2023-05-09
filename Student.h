@@ -5,13 +5,23 @@
 #include <iostream>
 
 using namespace std;
+template<class T>
+struct Node {
+    T value;
+    Node* left, * right;
+
+    Node(T val) {
+        value = val;
+        left = right = nullptr;
+    }
+};
 class student {
 protected:
 	string name, department;
 	double GPA;
-	int ID;
 public:
-	student() {
+    int ID;
+    student() {
 		name = department = "";
 	}
 	student(string n, string dep, int id, double gpa) {

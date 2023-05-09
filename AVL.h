@@ -6,37 +6,28 @@
 #include "Student.h"
 #include<map>
 using namespace std;
-template<class T>
-struct node {
-    T value;
-    node* left, * right;
 
-    node(T val) {
-        value = val;
-        left = right = nullptr;
-    }
-};
 template<class T>
 class AVL {
 
 public:
-	node<T>* root;
+	Node<T>* root;
 	AVL();
-	node<T>* createnode(student s);
-	node<T>* rotateleft(node<T>* root);
-	node<T>* rotateright(node<T>* root);
-	int height(node<T>* root);
-	node<T>* add_student(node<T>* root, student s);
-	node<T>* delete_student(node<T>* root, student s);
-	node<T>* findmin(node<T>* root);
-	bool search_student(node<T>* root, int id);
+	Node<T>* createNode(student s);
+	Node<T>* rotateleft(Node<T>* root);
+	Node<T>* rotateright(Node<T>* root);
+	int height(Node<T>* root);
+	Node<T>* add_student(Node<T>* root, student s);
+	Node<T>* delete_student(Node<T>* root, student s);
+	Node<T>* findmin(Node<T>* root);
+	bool search_student(Node<T>* root, int id);
 	void insert();
 	void delete_std(int id);
 	void search(int id);
-	void printReq(node<T>* cur);
+	void printReq(Node<T>* cur);
 	void printInOrder();
 	bool validData(string& n, string& dep, int& id, double& gpa);
-	node<T>* balanceBST(node<T>* root);
+	Node<T>* balanceBST(Node<T>* root);
 	int start();
 	map<string, int> depMap;
 

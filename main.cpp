@@ -1,12 +1,19 @@
 #include"BST.h"
-#include "HeapStudent.h"
 #include "MaxHeap.h"
+#include "AVL.h"
+#include "AVL.cpp"
+#include "BST.cpp"
+#include "MinHeap.cpp"
+#include "MaxHeap.cpp"
 
 using namespace std;
 
 int main()
 {
     BSTStudent bst;
+    AVL<student> avl;
+    MinHeap<student> minHeap;
+    MaxHeap<student> maxHeap;
 
     int choice;
     do
@@ -22,17 +29,15 @@ int main()
             }
             else if(choice == 2)
             {
-         cont = bst.start();
+//                avl.insert();
                 break;
             }
             else if(choice == 3)
             {
-                MinHeap<HeapStudent> minHeap;
                 minHeap.studentMenu();
             }
             else if(choice == 4)
             {
-                MaxHeap<HeapStudent> maxHeap;
                 maxHeap.studentMenu();
             }
         } while (cont);

@@ -7,21 +7,21 @@ AVL<T>::AVL()
 }
 
 template<class T>
-node<T>* AVL<T>::createnode(student s)
+Node<T>* AVL<T>::createNode(student s)
 {
-	node<T>* newnode = new node<T>;
-	newnode->value = s;
-	newnode->left = NULL;
-	newnode->right = NULL;
-	newnode->height = 1;
-	return newnode;
+	Node<T>* newNode = new Node<T>;
+	newNode->value = s;
+	newNode->left = nullptr;
+	newNode->right = nullptr;
+	newNode->height = 1;
+	return newNode;
 	
 }
 
 template<class T>
-node<T>* AVL<T>::rotateleft(node<T>* root)
+Node<T>* AVL<T>::rotateleft(Node<T>* root)
 {
-	node<T>* temp = root->right;
+	Node<T>* temp = root->right;
 	root->right = temp->left;
 	temp->left = root;
 	root->height = max(height(root->left), height(root->right)) + 1;
@@ -30,9 +30,9 @@ node<T>* AVL<T>::rotateleft(node<T>* root)
 }
 
 template<class T>
-node<T>* AVL<T>::rotateright(node<T>* root)
+Node<T>* AVL<T>::rotateright(Node<T>* root)
 {
-	node<T>* temp = root->left;
+	Node<T>* temp = root->left;
 	root->left = temp->right;
 	temp->right = root;
 	root->height = max(height(root->left), height(root->right)) + 1;
@@ -41,16 +41,16 @@ node<T>* AVL<T>::rotateright(node<T>* root)
 }
 
 template<class T>
-int AVL<T>::height(node<T>* root)
+int AVL<T>::height(Node<T>* root)
 {
-	if (root == NULL)
+	if (root == nullptr)
 		return 0;
 	return root->height;
 }
 template<class T>
-node<T>* AVL<T>::balanceBST(node<T>* root)
+Node<T>* AVL<T>::balanceBST(Node<T>* root)
 {
- if(root==NULL) return root;
+ if(root==nullptr) return root;
         root->left= balanceBST(root->left);
         root->right= balanceBST(root->right);
         int l = height(root->left), r = height(root->right);
@@ -69,11 +69,11 @@ node<T>* AVL<T>::balanceBST(node<T>* root)
         return root;
 }
 template<class T>
-node<T>* AVL<T>::add_student(node<T>* root, student s)
+Node<T>* AVL<T>::add_student(Node<T>* root, student s)
 {	
-	if (root == NULL) {
-        root = createnode(s);
-        root->height = 1;
+	if (root == nullptr) {
+        root = createNode(s);
+        root->right = 1;
         cout << "The student is added.\n";
         return root;
     }
@@ -84,19 +84,19 @@ node<T>* AVL<T>::add_student(node<T>* root, student s)
     }
     else if (s.getID() < root->value.ID) {
         root->left = add_student(root->left, s);
-        root = balanceBST(root); // balance the tree after adding a new node
+        root = balanceBST(root); // balance the tree after adding a new Node
     }
     else if (s.getID() > root->value.ID) {
         root->right = add_student(root->right, s);
-        root = balanceBST(root); // balance the tree after adding a new node
+        root = balanceBST(root); // balance the tree after adding a new Node
     }
     root->height = max(height(root->left), height(root->right)) + 1;
     return root;
 }
 template<class T>
-bool AVL<T>::search_student(node<T>* root, int id)
+bool AVL<T>::search_student(Node<T>* root, int id)
 {
-	if (root == NULL) {
+	if (root == nullptr) {
 		cout << "This student is not exist" << endl;
 		return false;
 	}
@@ -176,9 +176,9 @@ void AVL<T>::search(int id)
 	
 }
 template<class T>
-node<T>* AVL<T>::delete_student(node<T>* root, student s)
+Node<T>* AVL<T>::delete_student(Node<T>* root, student s)
 {
-	if (root == NULL) {
+	if (root == nullptr) {
 		cout << " The student is not exist " << endl;
 		return root;
 	}
@@ -189,27 +189,27 @@ node<T>* AVL<T>::delete_student(node<T>* root, student s)
 		root->right = delete_student(root->right, s);
 	}
 	else {
-		if (root->left == NULL && root->right == NULL) {
+		if (root->left == nullptr && root->right == nullptr) {
 			delete root;
-			root = NULL;
+			root = nullptr;
 		}
-		else if (root->left == NULL) {
-			node<T>* temp = root;
+		else if (root->left == nullptr) {
+			Node<T>* temp = root;
 			root = root->right;
 			delete temp;
 		}
-		else if (root->right == NULL) {
-			node<T>* temp = root;
+		else if (root->right == nullptr) {
+			Node<T>* temp = root;
 			root = root->left;
 			delete temp;
 		}
 		else {
-			node<T>* temp = findmin(root->right);
+			Node<T>* temp = findmin(root->right);
 			root->value = temp->value;
 			root->right = delete_student(root->right, temp->value);
 		}
 	}
-	if (root == NULL)
+	if (root == nullptr)
 	{
 		cout << " The student is deleted " << endl;
 		return root;
@@ -228,11 +228,11 @@ void AVL<T>::delete_std(int id)
 	root = delete_student(root, s);
 }
 template<class T>
-node<T>* AVL<T>::findmin(node<T>* root)
+Node<T>* AVL<T>::findmin(Node<T>* root)
 {
-	if (root == NULL)
-		return NULL;
-	else if (root->left == NULL)
+	if (root == nullptr)
+		return nullptr;
+	else if (root->left == nullptr)
 		return root;
 	else
 		return findmin(root->left);
@@ -290,9 +290,9 @@ int AVL<T>::start()
 	return option;
 }
 template<class T>
-void AVL<T>::printReq(node<T>* cur)
+void AVL<T>::printReq(Node<T>* cur)
 {
-	if (cur == NULL)
+	if (cur == nullptr)
 		return;
 	
 	printReq(cur->left);

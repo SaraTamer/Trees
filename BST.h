@@ -12,17 +12,6 @@
 using namespace std;
 
 
-
-template<class T>
-struct Node {
-	T value;
-	Node* left, * right;
-
-	Node(T val) {
-		value = val;
-		left = right = nullptr;
-	}
-};
 template<class T>
 class BST {
 	Node<T>* root = nullptr;
