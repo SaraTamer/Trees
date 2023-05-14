@@ -67,7 +67,6 @@ void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh) {
             getline(file, name);
             file >> GPA;
             file >> department;
-            //getline(file, department);
             temp += name;
 
             student s (temp, department, id, GPA);
