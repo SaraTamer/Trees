@@ -11,15 +11,15 @@ using namespace std;
 
 class BST {
 	Node* root = nullptr;
+	Node* Search(int id);
 public:
 	int start();
 	void AddStudent();
 	void insert(student val);
-	//void RemoveStudent();
+	void RemoveStudent(int id);
 	void SearchStudent(int id);
 	void PrintAll();//sorted by ID
 };
-
 
 
 

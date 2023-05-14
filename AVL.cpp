@@ -301,3 +301,9 @@ void AVL::printInOrder()
 	printReq(root);
 
 }
+
+void AVL::insertStudent(student s) {
+	root = add_student(root, s);
+	//add dep to map if found increase count
+	depMap[s.getDepart()] = 1;
+}

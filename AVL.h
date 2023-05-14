@@ -21,6 +21,7 @@ public:
 	Node* findmin(Node* root);
 	bool search_student(Node* root, int id);
 	void insert();
+	void insertStudent(student s);
 	void delete_std(int id);
 	void search(int id);
 	void printReq(Node* cur);
