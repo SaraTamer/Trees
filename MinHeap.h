@@ -21,10 +21,10 @@ protected:
     int left(int i){ return i * 2 + 1;}
     int right(int i){ return i * 2 + 2;}
     void loadVec();
-    void insert(student item);
-
 public:
+
     MinHeap(){};
+    void insert(student item);
     void print();
     void start();
 };

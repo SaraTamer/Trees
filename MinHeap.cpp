@@ -1,6 +1,6 @@
 #include "MinHeap.h"
 
-void MinHeap::heapify(vector<student> &vec, int size, int parent)
+void MinHeap::heapify(vector<student> vec, int size, int parent)
 {
     int l = left(parent);
     int r = right(parent);
@@ -47,21 +47,48 @@ void MinHeap::print()
 
 void MinHeap::loadVec()
 {
-    ifstream db;
-    db.open("Database.txt");
-    string id, name, dept, gpa;
-    while(db)
-    {
-        getline(db,id);
-        getline(db,name);
-        getline(db,gpa);
-        getline(db,dept);
-        student s( string(name), string(dept), stoi(string(id)), stod(string(gpa)));
-        myVec.push_back(s);
+    fstream db;
+    db.open("Students.txt", ios::in);
+    if (db.fail()) {
+        db.close();
+        db.open("Students.txt", ios::out);
+        db.close();
     }
+    else {
+        int nStudents;
+        db >> nStudents;
+        for(int i = nStudents ; i > 0 ; i--) {
+            string name, department, temp;
+            int id;
+            double GPA;
+            db >> id;
+            db >> temp;
+            getline(db, name);
+            db >> GPA;
+            db >> department;
+            cout << temp;
+            //getline(db, department);
+            temp += name;
 
-    buildHeap(myVec,myVec.size());
-    db.close();
+            student s (temp, department, id, GPA);
+            //call insert that takes student
+            this->insert(s);
+
+        }
+    }
+    //    string id, name, dept, gpa;
+//    while(db)
+//    {
+//        getline(db,id);
+//        getline(db,name);
+//        getline(db,gpa);
+//        getline(db,dept);
+//        student s( string(name), string(dept), stoi(string(id)), stod(string(gpa)));
+//        myVec.push_back(s);
+//    }
+
+//    buildHeap(myVec,myVec.size());
+//    db.close();
 }
  
 void MinHeap::insert(student item)

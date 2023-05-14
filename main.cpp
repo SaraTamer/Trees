@@ -7,14 +7,14 @@
 #include "MaxHeap.cpp"
 
 using namespace std;
-void LoadData(BST& bst, AVL& avl);
+void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh);
 int main()
 {
     BST bst;
     AVL avl;
-    LoadData(bst, avl);
     MinHeap minHeap;
     MaxHeap maxHeap;
+    LoadData(bst, avl, minHeap, maxHeap);
 
     int choice;
     do
@@ -46,10 +46,11 @@ int main()
 
     return 0;
 }
-void LoadData(BST& bst, AVL& avl) {
+void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh) {
     fstream file;
     file.open("Students.txt", ios::in);
-    if (file.fail()) {
+    if (file.fail())
+    {
         file.close();
         file.open("Students.txt", ios::out);
         file.close();
@@ -70,6 +71,8 @@ void LoadData(BST& bst, AVL& avl) {
             student s (temp, department, id, GPA);
             bst.insert(s);
             avl.insertStudent(s);
+            minh.insert(s);
+            maxh.insert(s);
             //call insert that takes student 
         }
     }
