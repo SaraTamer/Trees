@@ -68,7 +68,6 @@ Node* AVL::add_student(Node* root, student s)
 {
 	if (root == nullptr) {
 		root = createNode(s);
-		cout << "The student is added.\n";
 		return root;
 	}
 	//check if already exist return 
@@ -243,6 +242,7 @@ int AVL::start()
 	case 1: {
 		cout << "your choice 1\n";
 		insert();
+        cout << "The student is added.\n";
 		break;
 	}
 	case 2: {
