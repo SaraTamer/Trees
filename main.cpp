@@ -7,11 +7,12 @@
 #include "MaxHeap.cpp"
 
 using namespace std;
-
+void LoadData(BST& bst, AVL& avl);
 int main()
 {
     BST bst;
     AVL avl;
+    LoadData(bst, avl);
     MinHeap minHeap;
     MaxHeap maxHeap;
 
@@ -45,5 +46,32 @@ int main()
 
     return 0;
 }
+void LoadData(BST& bst, AVL& avl) {
+    fstream file;
+    file.open("Students.txt", ios::in);
+    if (file.fail()) {
+        file.close();
+        file.open("Students.txt", ios::out);
+        file.close();
+    }
+    else {
+        int nStudents;
+        file >> nStudents;
+        for(int i=nStudents;i>0;i--) {
+            string name, department,temp;
+            int id;
+            double GPA;
+            file >> id; file >> temp;
+            getline(file, name);
+            file >> GPA; file >> department; cout << temp;
+            //getline(file, department);
+            temp += name;
 
+            student s (temp, department, id, GPA);
+            bst.insert(s);
+            //avl.insert(s);
+            //call insert that takes student 
+        }
+    }
+}
 
