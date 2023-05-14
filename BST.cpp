@@ -166,7 +166,7 @@ void BST::RemoveStudent(int id) {
 	}
 	Node* cur = Search(id), *parent = root;
 	if (cur == nullptr) {
-		cout << "There is no student with such id\n";
+		cout << "There is no student with such an ID\n";
 	}
 	else {
 		cout << "Student is found.\n" << cur->value << "\nStudent is deleted.\n";
