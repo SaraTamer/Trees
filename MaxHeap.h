@@ -10,16 +10,15 @@
 
 using namespace std;
 
-template<class T>
-class MaxHeap: public MinHeap<T>{
+class MaxHeap: public MinHeap{
 private:
-    vector<T> myVec;
-public:
-    MaxHeap(){};
-    void heapify(vector<T> vec, int size, int parent) override;
+    vector<student> myVec;
+    void heapify(vector<student> vec, int size, int parent) override;
     int parent(int i){ return (i-1) / 2;}
     int left(int i){ return i * 2 + 1;}
     int right(int i){ return i * 2 + 2;}
+public:
+    MaxHeap(){};
 };
 
 

@@ -1,14 +1,17 @@
 #include "MinHeap.h"
 
-template<class T>
-void MinHeap<T>::heapify(vector<T> vec, int size, int parent)
+void MinHeap::heapify(vector<student> vec, int size, int parent)
 {
     int l = left(parent);
     int r = right(parent);
     int minimum = parent;
-    if(l < size && vec[minimum].getGPA() > vec[l].getGPA())
+    int m = vec[minimum].getGPA();
+    int lValue = vec[l].getGPA();
+    if(l < size && m > lValue)
         minimum = l;
-    if(r < size && vec[minimum].getGPA() > vec[r].getGPA())
+    m = vec[minimum].getGPA();
+    int rValue = vec[l].getGPA();
+    if(r < size && m > r)
         minimum = r;
     if(minimum != parent)
     {
@@ -16,16 +19,15 @@ void MinHeap<T>::heapify(vector<T> vec, int size, int parent)
         heapify(vec, size,minimum);
     }
 }
-template<class T>
-void MinHeap<T>::buildHeap(vector<T> vec, int size)
+ 
+void MinHeap::buildHeap( vector<student> vec, int size)
 {
     for(int i = size/2 - 1; i >= 0; i--)
     {
         heapify(vec,size,i);
     }
 }
-template<class T>
-void MinHeap<T>::heapSort(vector<T> vec, int size)
+void MinHeap::heapSort( vector<student> vec, int size)
 {
     buildHeap(vec,size);
     for(int i = size/2 - 1;i >= 0; i--)
@@ -34,8 +36,7 @@ void MinHeap<T>::heapSort(vector<T> vec, int size)
         heapify(vec,i,0);
     }
 }
-template<class T>
-void MinHeap<T>::print()
+void MinHeap::print()
 {
     heapSort(myVec, myVec.size());
     for(auto i: myVec)
@@ -44,8 +45,7 @@ void MinHeap<T>::print()
     }
 }
 
-template<class T>
-void MinHeap<T>::loadVec()
+void MinHeap::loadVec()
 {
     ifstream db;
     db.open("Database.txt");
@@ -63,14 +63,14 @@ void MinHeap<T>::loadVec()
     buildHeap(myVec,myVec.size());
     db.close();
 }
-template<class T>
-void MinHeap<T>::insert(T item)
+ 
+void MinHeap::insert(student item)
 {
     myVec.push_back(item);
     buildHeap(myVec,myVec.size());
 }
-template<class T>
-void MinHeap<T>::studentMenu()
+ 
+void MinHeap::studentMenu()
 {
 //    this->loadVec();
     cout << "Choose one of the following options:\n"

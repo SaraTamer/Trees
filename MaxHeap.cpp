@@ -1,7 +1,6 @@
 #include "MaxHeap.h"
 
-template<class T>
-void MaxHeap<T>::heapify(vector<T> vec, int size, int parent)
+void MaxHeap::heapify(vector<student> vec, int size, int parent)
 {
     int l = left(parent);
     int r = right(parent);

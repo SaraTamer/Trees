@@ -11,22 +11,21 @@
 using namespace std;
 
 
-template<class T>
 class MinHeap{
 protected:
-    vector<T> myVec;
-public:
-    MinHeap(){};
-
-    virtual void heapify(vector<T> vec, int size, int parent);
-    void buildHeap(vector<T> vec, int size);
-    void heapSort(vector<T> vec, int size);
+    vector<student>  myVec;
+    virtual void heapify(vector<student>  vec, int size, int parent);
+    void buildHeap(vector<student>  vec, int size);
+    void heapSort(vector<student>  vec, int size);
     int parent(int i){ return (i-1) / 2;}
     int left(int i){ return i * 2 + 1;}
     int right(int i){ return i * 2 + 2;}
-    void print();
     void loadVec();
-    void insert(T item);
+    void insert(student item);
+
+public:
+    MinHeap(){};
+    void print();
     void studentMenu();
 };
 

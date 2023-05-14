@@ -10,10 +10,10 @@ using namespace std;
 
 int main()
 {
-    BSTStudent bst;
+    BST bst;
     AVL avl;
-    MinHeap<student> minHeap;
-    MaxHeap<student> maxHeap;
+    MinHeap minHeap;
+    MaxHeap maxHeap;
 
     int choice;
     do
@@ -29,7 +29,7 @@ int main()
             }
             else if(choice == 2)
             {
-//                cont = avl.start();
+                cont = avl.start();
                 break;
             }
             else if(choice == 3)
