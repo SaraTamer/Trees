@@ -62,9 +62,11 @@ void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh) {
             string name, department,temp;
             int id;
             double GPA;
-            file >> id; file >> temp;
+            file >> id;
+            file >> temp;
             getline(file, name);
-            file >> GPA; file >> department; cout << temp;
+            file >> GPA;
+            file >> department;
             //getline(file, department);
             temp += name;
 
