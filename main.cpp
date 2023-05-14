@@ -69,7 +69,7 @@ void LoadData(BST& bst, AVL& avl) {
 
             student s (temp, department, id, GPA);
             bst.insert(s);
-            //avl.insert(s);
+            avl.insertStudent(s);
             //call insert that takes student 
         }
     }
