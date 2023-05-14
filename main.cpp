@@ -34,11 +34,11 @@ int main()
             }
             else if(choice == 3)
             {
-                minHeap.studentMenu();
+                minHeap.start();
             }
             else if(choice == 4)
             {
-                maxHeap.studentMenu();
+                maxHeap.start();
             }
         } while (cont);
     } while (choice);

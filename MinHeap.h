@@ -26,7 +26,7 @@ protected:
 public:
     MinHeap(){};
     void print();
-    void studentMenu();
+    void start();
 };
 
 #endif //TREES_MINHEAP_H

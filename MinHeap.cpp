@@ -1,17 +1,17 @@
 #include "MinHeap.h"
 
-void MinHeap::heapify(vector<student> vec, int size, int parent)
+void MinHeap::heapify(vector<student> &vec, int size, int parent)
 {
     int l = left(parent);
     int r = right(parent);
     int minimum = parent;
-    int m = vec[minimum].getGPA();
-    int lValue = vec[l].getGPA();
+    double m = vec[minimum].getGPA();
+    double lValue = vec[l].getGPA();
     if(l < size && m > lValue)
         minimum = l;
     m = vec[minimum].getGPA();
-    int rValue = vec[l].getGPA();
-    if(r < size && m > r)
+    double rValue = vec[l].getGPA();
+    if(r < size && m > rValue)
         minimum = r;
     if(minimum != parent)
     {
@@ -27,10 +27,10 @@ void MinHeap::buildHeap( vector<student> vec, int size)
         heapify(vec,size,i);
     }
 }
-void MinHeap::heapSort( vector<student> vec, int size)
+void MinHeap::heapSort(vector<student> vec, int size)
 {
     buildHeap(vec,size);
-    for(int i = size/2 - 1;i >= 0; i--)
+    for(int i = size - 1;i >= 0; i--)
     {
         swap(vec[0], vec[i]);
         heapify(vec,i,0);
@@ -70,7 +70,7 @@ void MinHeap::insert(student item)
     buildHeap(myVec,myVec.size());
 }
  
-void MinHeap::studentMenu()
+void MinHeap::start()
 {
 //    this->loadVec();
     cout << "Choose one of the following options:\n"
