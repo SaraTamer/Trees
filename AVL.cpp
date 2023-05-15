@@ -155,11 +155,13 @@ void AVL::insert() {
 
 	root = add_student(root, s);
 	//add dep to map if found increase count if not add it
-	if (depMap.find(dep) != depMap.end()) {
-		depMap[dep]++;
-	}
-	else {
-		depMap[dep] = 1;
+	if (newStud) {
+		if (depMap.find(dep) != depMap.end()) {
+			depMap[dep]++;
+		}
+		else {
+			depMap[dep] = 1;
+		}
 	}
 }
 
@@ -246,7 +248,7 @@ int AVL::start()
 	{
 	case 1: {
 		insert();
-        	if(newStud)cout << "The student is added.\n";
+		if (newStud)cout << "The student is added.\n";
 		break;
 	}
 	case 2: {
@@ -286,7 +288,7 @@ void AVL::printReq(Node* cur)
 		return;
 
 	printReq(cur->left);
-	cout << cur->value<< endl;
+	cout << cur->value << endl;
 	printReq(cur->right);
 
 }
@@ -296,7 +298,7 @@ void AVL::printInOrder()
 	auto it = depMap.begin();
 	for (; it != depMap.end(); it++) {
 		if (it->second > 0) {
-			cout << "Department: " << it->first << " has " << it->second << " students"  << endl;
+			cout << "Department: " << it->first << " has " << it->second << " students" << endl << "All students  are: " << endl;
 		}
 	}
 	printReq(root);
@@ -305,6 +307,13 @@ void AVL::printInOrder()
 
 void AVL::insertStudent(student s) {
 	root = add_student(root, s);
-	//add dep to map if found increase count
-	depMap[s.getDepart()] = 1;
+	//add dep to map if found increase count if not add it
+	if (newStud) {
+		if (depMap.find(s.getDepart()) != depMap.end()) {
+			depMap[s.getDepart()]++;
+		}
+		else {
+			depMap[s.getDepart()] = 1;
+		}
+	}
 }
