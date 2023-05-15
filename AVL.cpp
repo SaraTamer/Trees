@@ -249,7 +249,7 @@ int AVL::start()
 	switch (option)
 	{
 	case 1: {
-		insert();
+		insert(); 
 		if (newStud)
 			cout << "The student is added.\n";
 		else
