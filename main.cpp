@@ -41,6 +41,9 @@ int main()
             {
                 maxHeap.start();
             }
+             else if (choice == 5) {
+                return;
+            }
         } while (cont);
     } while (choice);
 
