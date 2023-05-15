@@ -125,8 +125,9 @@ bool AVL::validData(string& n, string& dep, int& id, double& gpa) {
 		return false;
 	}
 	//check that dep is not empty
-	if (dep.length() < 2) {
-		cout << "Invalid Department" << endl;
+	if (dep.length() < 2  ||
+		((dep != "CS") && (dep != "DS") && (dep != "IS") && (dep != "IT") && (dep != "AI"))) {
+		cout << "Invalid department must be more than one character and one of the following (CS, DS, IS, IT, AI)\n";
 		return false;
 	}
 	return true;
@@ -249,7 +250,10 @@ int AVL::start()
 	{
 	case 1: {
 		insert();
-		if (newStud)cout << "The student is added.\n";
+		if (newStud)
+			cout << "The student is added.\n";
+		else
+			newStud = true;
 		break;
 	}
 	case 2: {
@@ -299,9 +303,10 @@ void AVL::printInOrder()
 	auto it = depMap.begin();
 	for (; it != depMap.end(); it++) {
 		if (it->second > 0) {
-			cout << "Department: " << it->first << " has " << it->second << " students" << endl << "All students  are: " << endl;
+			cout << "Department: " << it->first << " has " << it->second << " students" << endl ;
 		}
 	}
+	cout << "All students  are: " << endl;
 	printReq(root);
 
 }
