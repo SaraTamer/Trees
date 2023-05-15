@@ -7,7 +7,7 @@ int BST::start() {
 	cin >> option;
 	while (option < 1 || option>5) {
 		cout << "Invalid choice.\n Please choose one of the following options:\n1. Add student\n2. Remove student\n3. Search student\n"
-			<< "4. Print All(sorted by id)\n5. Return to main menu\n"<<"Enter number of option:";
+			<< "4. Print All(sorted by id)\n5. Return to main menu\n" << "Enter number of option:";
 		cin >> option;
 	}
 	switch (option)
@@ -94,7 +94,7 @@ void printReq(Node* cur) {
 	printReq(cur->right);
 }
 void BST::PrintAll() {
-	
+
 	printReq(root);
 	cout << "CS " << departments[0] << " Students\nIT " << departments[1] << " Students\n";
 	cout << "DS " << departments[2] << " Students\nIS " << departments[3] << " Students\n";
@@ -104,7 +104,7 @@ void BST::AddStudent() {
 	double gpa; int id;
 	bool valid = 0;
 	cout << "id: ";
-	cin >> id; 
+	cin >> id;
 	while (id < 1) {
 		cout << "Invalid id must be positive integer\nid:";
 		cin >> id;
@@ -113,12 +113,18 @@ void BST::AddStudent() {
 	while (found != nullptr) {
 		cout << "This ID already exists. Please enter another one\nid:";
 		cin >> id;
+		found = Search(id);
 	}
 	cin.ignore();
 	cout << "Name: ";
 	std::getline(std::cin, n);
+	while (n.size() < 2) {
+		cout << "Invalid name must be more than one character\n";
+		cout << "Name: ";
+		std::getline(std::cin, n);
+	}
 	cout << "GPA: ";
-	cin >> gpa; 
+	cin >> gpa;
 	while (gpa < 1 || gpa>4) {
 		cout << "Invalid gpa must be positive and less than or equal 4\nGPA: ";
 		cin >> gpa;
@@ -126,6 +132,11 @@ void BST::AddStudent() {
 	cin.ignore();
 	cout << "Department: ";
 	std::getline(std::cin, dep);
+	while (dep.size() < 2) {
+		cout << "Invalid department must be more than one character\n";
+		cout << "Department: ";
+		std::getline(std::cin, dep);
+	}
 	insert(student(n, dep, id, gpa));
 	cout << "The student is added.\n";
 }
@@ -164,7 +175,7 @@ void BST::RemoveStudent(int id) {
 		cout << "Invalid ID must be positive integer\n";
 		return;
 	}
-	Node* cur = Search(id), *parent = root;
+	Node* cur = Search(id), * parent = root;
 	if (cur == nullptr) {
 		cout << "There is no student with such an ID\n";
 	}
@@ -175,11 +186,11 @@ void BST::RemoveStudent(int id) {
 			hasParent = false;
 			if (root->left == nullptr && root->right == nullptr) {
 				root = nullptr;
-				delete cur; 
+				delete cur;
 				return;
 			}
 		}
-		
+
 		while (hasParent)
 		{
 			if (parent->value.getID() >= id) {
@@ -237,4 +248,3 @@ void BST::RemoveStudent(int id) {
 		delete cur;
 	}
 }
-
