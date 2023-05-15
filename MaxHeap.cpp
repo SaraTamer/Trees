@@ -5,9 +5,9 @@ void MaxHeap::heapify(vector<student> &vec, int size, int parent)
     int l = left(parent);
     int r = right(parent);
     int maximum = parent;
-    if(l < size && vec[maximum].getGPA() > vec[l].getGPA())
+    if(l < size && vec[maximum].getGPA() < vec[l].getGPA())
         maximum = l;
-    if(r < size && vec[maximum].getGPA() > vec[r].getGPA())
+    if(r < size && vec[maximum].getGPA() < vec[r].getGPA())
         maximum = r;
     if(maximum != parent)
     {

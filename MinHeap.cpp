@@ -4,9 +4,9 @@ void MinHeap::heapify(vector<student> &vec, int size, int parent) {
     int l = left(parent);
     int r = right(parent);
     int minimum = parent;
-    if(l < size && vec[minimum].getGPA() < vec[l].getGPA())
+    if(l < size && vec[minimum].getGPA() > vec[l].getGPA())
         minimum = l;
-    if(r < size && vec[minimum].getGPA() < vec[r].getGPA())
+    if(r < size && vec[minimum].getGPA() > vec[r].getGPA())
         minimum = r;
 
     if(minimum != parent)
@@ -31,6 +31,7 @@ void MinHeap::heapSort( vector<student> &vec, int size)
         swap(vec[0], vec[i]);
         heapify(vec,i,0);
     }
+    reverse(vec.begin(), vec.end());
 }
 void MinHeap::print()
 {
