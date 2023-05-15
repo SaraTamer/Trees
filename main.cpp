@@ -42,7 +42,7 @@ int main()
                 maxHeap.start();
             }
              else if (choice == 5) {
-                return;
+                return 0;
             }
         } while (cont);
     } while (choice);
