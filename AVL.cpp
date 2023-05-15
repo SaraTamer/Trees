@@ -105,6 +105,7 @@ bool AVL::search_student(Node* root, int id)
 		cout << root->value << endl;
 		return true;
 	}
+    return false;
 }
 
 bool AVL::validData(string& n, string& dep, int& id, double& gpa) {
