@@ -132,8 +132,9 @@ void BST::AddStudent() {
 	cin.ignore();
 	cout << "Department: ";
 	std::getline(std::cin, dep);
-	while (dep.size() < 2) {
-		cout << "Invalid department must be more than one character\n";
+	while (dep.size() < 2) ||
+		((dep != "CS") && (dep != "DS") && (dep != "IS") && (dep != "IT") && (dep != "AI"))) {
+		cout << "Invalid department must be more than one character and one of the following (CS, DS, IS, IT, AI)\n";
 		cout << "Department: ";
 		std::getline(std::cin, dep);
 	}
