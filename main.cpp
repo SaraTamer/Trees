@@ -6,6 +6,7 @@
 #include "MinHeap.cpp"
 #include "MaxHeap.cpp"
 
+
 using namespace std;
 void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh);
 int main()
@@ -26,22 +27,20 @@ int main()
         {
             if (choice == 1) {
                 cont = bst.start();
-                break;
             }
-            else if(choice == 2)
+            else if (choice == 2)
             {
                 cont = avl.start();
-                break;
             }
-            else if(choice == 3)
+            else if (choice == 3)
             {
                 minHeap.start();
             }
-            else if(choice == 4)
+            else if (choice == 4)
             {
                 maxHeap.start();
             }
-             else if (choice == 5) {
+            else if (choice == 5) {
                 return 0;
             }
         } while (cont);
@@ -61,8 +60,8 @@ void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh) {
     else {
         int nStudents;
         file >> nStudents;
-        for(int i=nStudents;i>0;i--) {
-            string name, department,temp;
+        for (int i = nStudents; i > 0; i--) {
+            string name, department, temp;
             int id;
             double GPA;
             file >> id;
@@ -72,13 +71,11 @@ void LoadData(BST& bst, AVL& avl, MinHeap& minh, MaxHeap& maxh) {
             file >> department;
             temp += name;
 
-            student s (temp, department, id, GPA);
+            student s(temp, department, id, GPA);
             bst.insert(s);
             avl.insertStudent(s);
             minh.insert(s);
             maxh.insert(s);
-            //call insert that takes student 
         }
     }
 }
-
