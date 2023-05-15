@@ -66,7 +66,6 @@ Node* AVL::balanceBST(Node* root)
 bool newStud = true;
 Node* AVL::add_student(Node* root, student s)
 {
-	newStud = true;
 	if (root == nullptr) {
 		root = createNode(s);
 		return root;
