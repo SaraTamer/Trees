@@ -85,6 +85,7 @@ Node* AVL::add_student(Node* root, student s)
 		root = balanceBST(root); // balance the tree after adding a new Node
 	}
 	root->height = max(height(root->left), height(root->right)) + 1;
+	newStud = true;
 	return root;
 }
 
