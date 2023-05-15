@@ -296,7 +296,7 @@ void AVL::printInOrder()
 	auto it = depMap.begin();
 	for (; it != depMap.end(); it++) {
 		if (it->second > 0) {
-			cout << "Department: " << it->first << " has " << it->second << " students" << endl << "All students  are: " << endl;
+			cout << "Department: " << it->first << " has " << it->second << " students"  << endl;
 		}
 	}
 	printReq(root);
