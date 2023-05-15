@@ -122,7 +122,11 @@ bool AVL::validData(string& n, string& dep, int& id, double& gpa) {
 		cout << "Invalid GPA" << endl;
 		return false;
 	}
-
+	//check that dep is not empty
+	if (dep.empty()) {
+		cout << "Invalid Department" << endl;
+		return false;
+	}
 	return true;
 }
 
