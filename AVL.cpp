@@ -63,7 +63,7 @@ Node* AVL::balanceBST(Node* root)
 	}
 	return root;
 }
-
+bool newStud = true;
 Node* AVL::add_student(Node* root, student s)
 {
 	if (root == nullptr) {
@@ -73,6 +73,7 @@ Node* AVL::add_student(Node* root, student s)
 	//check if already exist return 
 	else if (root->value.getID() == s.getID()) {
 		cout << "The student is already exist.\n";
+		newStud = false;
 		return root;
 	}
 	else if (s.getID() < root->value.getID()) {
@@ -244,13 +245,11 @@ int AVL::start()
 	switch (option)
 	{
 	case 1: {
-		cout << "your choice 1\n";
 		insert();
-        cout << "The student is added.\n";
+        	if(newStud)cout << "The student is added.\n";
 		break;
 	}
 	case 2: {
-		cout << "your choice 2\n";
 		int id;
 		cout << "Enter the id of the student you want to delete: ";
 		cin >> id;
@@ -259,7 +258,6 @@ int AVL::start()
 		break;
 	}
 	case 3: {
-		cout << "your choice 3\n";
 		int id;
 		cout << "Enter the id of the student you want to search for: ";
 		cin >> id;
@@ -267,13 +265,12 @@ int AVL::start()
 		break;
 	}
 	case 4: {
-		cout << "your choice 4\n";
 		printInOrder();
 
 		break;
 	}
 	case 5: {
-		cout << "your choice 5\n";
+		option = 0;
 		break;
 	}
 
